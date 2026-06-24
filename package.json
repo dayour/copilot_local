@@ -1,0 +1,29 @@
+{
+  "name": "copilot-local-adapter",
+  "version": "0.1.0",
+  "description": "Standalone GitHub Copilot CLI adapter reconstructed from the Paperclip copilot_local session.",
+  "type": "module",
+  "bin": {
+    "copilot-local": "./bin/copilot-local.js"
+  },
+  "exports": {
+    ".": "./src/index.js",
+    "./parse": "./src/parse.js",
+    "./models": "./src/models.js"
+  },
+  "scripts": {
+    "smoke": "node ./bin/copilot-local.js --cwd D:\\Github\\copilot-sdk --prompt \"Reply with the single word: hello\"",
+    "check": "node --check ./src/index.js && node --check ./src/parse.js && node --check ./src/models.js && node --check ./bin/copilot-local.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "copilot",
+    "adapter",
+    "github-copilot",
+    "jsonl",
+    "agent"
+  ],
+  "license": "MIT"
+}
