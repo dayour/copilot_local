@@ -5,52 +5,78 @@ import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  accent: string;
+  icon: ReactNode;
   description: ReactNode;
 };
 
+const AdapterIcon = (
+  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 24H6" />
+    <path d="M42 24h-8" />
+    <rect x="14" y="14" width="20" height="20" rx="5" />
+    <path d="M20 14v-4M28 14v-4M20 38v-4M28 38v-4" />
+  </svg>
+);
+
+const ParseIcon = (
+  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 8c-5 0-6 3-6 8s-2 8-6 8c4 0 6 3 6 8s1 8 6 8" />
+    <path d="M30 8c5 0 6 3 6 8s2 8 6 8c-4 0-6 3-6 8s-1 8-6 8" />
+  </svg>
+);
+
+const ModelsIcon = (
+  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M24 6 6 15l18 9 18-9-18-9Z" />
+    <path d="M6 24l18 9 18-9" />
+    <path d="M6 33l18 9 18-9" />
+  </svg>
+);
+
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Standalone Adapter',
+    accent: 'nitrous',
+    icon: AdapterIcon,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Run the GitHub Copilot CLI outside Paperclip. A thin Node ESM wrapper
+        shells out to <code>copilot -p</code> with no framework lock-in.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'JSONL Event Parsing',
+    accent: 'mint',
+    icon: ParseIcon,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Streams JSONL events into structured results: session ID, assistant
+        text, token usage, premium requests, and effective model hints.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Model Catalog',
+    accent: 'purple',
+    icon: ModelsIcon,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        A built-in catalog of supported models with capabilities and token
+        limits. Select any model with a single <code>--model</code> flag.
       </>
     ),
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, accent, icon, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+      <div className={styles.card}>
+        <div className={clsx(styles.iconWrap, styles[accent])}>{icon}</div>
+        <Heading as="h3" className={styles.cardTitle}>{title}</Heading>
+        <p className={styles.cardText}>{description}</p>
       </div>
     </div>
   );

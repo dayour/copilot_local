@@ -1,11 +1,64 @@
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 4.5rem 0 5rem;
   width: 100%;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.card {
+  height: 100%;
+  padding: 2rem 1.75rem;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(46, 150, 255, 0.45);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(46, 150, 255, 0.15);
+}
+
+.iconWrap {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  margin-bottom: 1.25rem;
+}
+
+.iconWrap svg {
+  width: 30px;
+  height: 30px;
+}
+
+.nitrous {
+  color: var(--brand-nitrous);
+  background: rgba(46, 150, 255, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(46, 150, 255, 0.3);
+}
+
+.mint {
+  color: var(--brand-mint);
+  background: rgba(63, 224, 168, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(63, 224, 168, 0.3);
+}
+
+.purple {
+  color: var(--brand-purple);
+  background: rgba(185, 167, 242, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(185, 167, 242, 0.3);
+}
+
+.cardTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.cardText {
+  color: var(--ifm-color-content-secondary);
+  margin-bottom: 0;
 }

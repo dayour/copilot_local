@@ -6,25 +6,188 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  /* Nitrous blue (primary) */
+  --ifm-color-primary: #1f7fe6;
+  --ifm-color-primary-dark: #1c72cf;
+  --ifm-color-primary-darker: #1a6cc3;
+  --ifm-color-primary-darkest: #1559a1;
+  --ifm-color-primary-light: #3a90ed;
+  --ifm-color-primary-lighter: #4d9bef;
+  --ifm-color-primary-lightest: #79b4f3;
+
+  /* Brand accent palette */
+  --brand-nitrous: #2e96ff;
+  --brand-mint: #2fcf95;
+  --brand-purple: #9d86ec;
+  --brand-lava: #ff6a3d;
+
+  /* Semantic admonition colors */
+  --ifm-color-info: var(--brand-nitrous);
+  --ifm-color-success: var(--brand-mint);
+  --ifm-color-warning: var(--brand-lava);
+  --ifm-color-danger: #ff4d4d;
+
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --docusaurus-highlighted-code-line-bg: rgba(46, 150, 255, 0.12);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark theme is the native default for this site. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #4ba5ff;
+  --ifm-color-primary-dark: #2e96ff;
+  --ifm-color-primary-darker: #1a8bff;
+  --ifm-color-primary-darkest: #0a6cce;
+  --ifm-color-primary-light: #6bb7ff;
+  --ifm-color-primary-lighter: #86c4ff;
+  --ifm-color-primary-lightest: #b3daff;
+
+  --brand-nitrous: #4ba5ff;
+  --brand-mint: #3fe0a8;
+  --brand-purple: #b9a7f2;
+  --brand-lava: #ff7a4d;
+
+  --ifm-color-info: var(--brand-nitrous);
+  --ifm-color-success: var(--brand-mint);
+  --ifm-color-warning: var(--brand-lava);
+  --ifm-color-danger: #ff5c5c;
+
+  --ifm-background-color: #0a0e1a;
+  --ifm-background-surface-color: #111726;
+  --ifm-navbar-background-color: rgba(10, 14, 26, 0.72);
+  --ifm-footer-background-color: #070a12;
+  --ifm-color-content: #d7dee8;
+  --ifm-color-content-secondary: #9aa6b8;
+  --ifm-heading-color: #f2f5fa;
+  --ifm-toc-border-color: rgba(255, 255, 255, 0.08);
+  --ifm-hr-border-color: rgba(255, 255, 255, 0.08);
+  --ifm-link-color: var(--brand-mint);
+  --ifm-link-hover-color: #6cf0c4;
+  --ifm-menu-color-active: var(--brand-nitrous);
+  --ifm-breadcrumb-color-active: var(--brand-nitrous);
+  --docusaurus-highlighted-code-line-bg: rgba(46, 150, 255, 0.2);
+}
+
+/* ---------- Global surface + ambient glow ---------- */
+[data-theme='dark'] body {
+  background-color: var(--ifm-background-color);
+  background-image:
+    radial-gradient(900px 500px at 12% -5%, rgba(46, 150, 255, 0.1), transparent 60%),
+    radial-gradient(800px 500px at 92% 8%, rgba(185, 167, 242, 0.08), transparent 60%),
+    radial-gradient(700px 500px at 50% 110%, rgba(63, 224, 168, 0.06), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* ---------- Navbar glassmorphism ---------- */
+.navbar {
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.navbar__title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.navbar__link--active {
+  color: var(--brand-nitrous);
+}
+
+/* ---------- Links ---------- */
+.markdown a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.markdown a:hover {
+  border-bottom-color: currentColor;
+}
+
+/* ---------- Buttons ---------- */
+.button--primary {
+  background: linear-gradient(135deg, var(--brand-nitrous) 0%, #3a86ff 50%, var(--brand-purple) 120%);
+  border: none;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(46, 150, 255, 0.28);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+.button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(46, 150, 255, 0.42);
+  filter: brightness(1.05);
+  color: #fff;
+}
+.button--secondary {
+  background: transparent;
+  color: var(--ifm-heading-color);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+.button--secondary:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand-mint);
+  background: rgba(63, 224, 168, 0.08);
+  color: var(--ifm-heading-color);
+}
+
+/* ---------- Code blocks ---------- */
+[data-theme='dark'] .theme-code-block,
+[data-theme='dark'] pre {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+code {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+}
+
+/* ---------- Tables ---------- */
+[data-theme='dark'] table thead tr {
+  background: rgba(46, 150, 255, 0.08);
+}
+[data-theme='dark'] table tr:nth-child(2n) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ---------- Admonitions: semantic accents ---------- */
+.theme-admonition {
+  border-radius: 12px;
+  border-left-width: 4px;
+}
+
+/* ---------- Sidebar active item ---------- */
+[data-theme='dark'] .menu__link--active {
+  background: linear-gradient(90deg, rgba(46, 150, 255, 0.16), transparent);
+  border-left: 2px solid var(--brand-nitrous);
+}
+
+/* ---------- Scrollbar ---------- */
+[data-theme='dark'] ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+[data-theme='dark'] ::-webkit-scrollbar-track {
+  background: #0a0e1a;
+}
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--brand-nitrous), var(--brand-purple));
+  border-radius: 8px;
+  border: 3px solid #0a0e1a;
+}
+
+/* ---------- Footer ---------- */
+[data-theme='dark'] .footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.footer--dark {
+  --ifm-footer-background-color: #070a12;
+  --ifm-footer-color: var(--ifm-color-content-secondary);
+  --ifm-footer-link-color: var(--ifm-color-content-secondary);
+  --ifm-footer-title-color: var(--ifm-heading-color);
+  background:
+    linear-gradient(90deg, rgba(255, 122, 77, 0.5), rgba(46, 150, 255, 0.5), rgba(63, 224, 168, 0.5)) top / 100% 2px no-repeat,
+    var(--ifm-footer-background-color);
+}
+.footer--dark .footer__link-item:hover {
+  color: var(--brand-mint);
 }

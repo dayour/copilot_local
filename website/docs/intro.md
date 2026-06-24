@@ -15,6 +15,14 @@ npm run check
 node ./bin/copilot-local.js --cwd <your-repo> --model claude-opus-4.7 --prompt "Reply with hello"
 ```
 
+:::tip[Prerequisite]
+The adapter shells out to the GitHub Copilot CLI, so make sure `copilot` is installed and authenticated (`copilot --version`) before running.
+:::
+
+:::caution
+Passing `--allow-all-tools` lets the underlying CLI run any tool without prompting. Only use it against repositories you trust.
+:::
+
 ## What It Does
 
 The adapter shells out to the GitHub Copilot CLI:
