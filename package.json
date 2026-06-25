@@ -9,11 +9,14 @@
   "exports": {
     ".": "./src/index.js",
     "./parse": "./src/parse.js",
-    "./models": "./src/models.js"
+    "./models": "./src/models.js",
+    "./auth": "./src/auth.js",
+    "./login": "./src/login.js"
   },
   "scripts": {
     "smoke": "node ./bin/copilot-local.js --cwd D:\\Github\\copilot-sdk --prompt \"Reply with the single word: hello\"",
-    "check": "node --check ./src/index.js && node --check ./src/parse.js && node --check ./src/models.js && node --check ./bin/copilot-local.js"
+    "check": "node --check ./src/auth.js && node --check ./src/index.js && node --check ./src/login.js && node --check ./src/models.js && node --check ./src/parse.js && node --check ./bin/copilot-local.js",
+    "test": "node --test \"./test/*.test.js\""
   },
   "engines": {
     "node": ">=20"

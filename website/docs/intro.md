@@ -5,36 +5,32 @@ slug: /intro
 
 # copilot_local
 
-Standalone GitHub Copilot CLI adapter -- run `copilot -p ...` outside Paperclip and parse JSONL events into structured results.
+Standalone GitHub Copilot CLI adapter: run `copilot -p ...` from Node or a small CLI, then parse Copilot JSONL into structured results.
 
 ## Quick Start
 
 ```bash
-cd copilot_local
 npm run check
-node ./bin/copilot-local.js --cwd <your-repo> --model claude-opus-4.7 --prompt "Reply with hello"
+npm test
+node ./bin/copilot-local.js --cwd <your-repo> --model gpt-5.4 --prompt "Reply with hello"
 ```
 
 :::tip[Prerequisite]
-The adapter shells out to the GitHub Copilot CLI, so make sure `copilot` is installed and authenticated (`copilot --version`) before running.
+Install and authenticate the GitHub Copilot CLI first. You can use `copilot login` or `node ./bin/copilot-local.js login`.
 :::
 
 :::caution
-Passing `--allow-all-tools` lets the underlying CLI run any tool without prompting. Only use it against repositories you trust.
+The API enables `--allow-all-tools` by default for non-interactive runs. Set `allowAllTools: false` and pass explicit allow/deny lists when embedding it in stricter hosts.
 :::
 
-## What It Does
+## What It Provides
 
-The adapter shells out to the GitHub Copilot CLI:
+- CLI commands for `run`, `login`, and `models`.
+- `runCopilotLocal` and `buildCopilotArgs` for host integrations.
+- A JSONL parser that preserves messages, reasoning, tools, sessions, skills, MCP servers, user messages, intents, turns, result durations, code changes, and unknown future events.
+- Auth helpers for token validation, GitHub CLI token resolution, Copilot headers, auth error detection, and API endpoint discovery.
+- Dynamic model discovery with a static fallback catalog.
 
-```
-copilot -p <prompt> --output-format json --no-color -s --no-ask-user --allow-all-tools [--model <id>] [--resume=<sessionId>] [--add-dir <cwd>]
-```
+## Runtime Surfaces
 
-It parses JSONL events and returns:
-
-- `sessionId` from the terminal `result` event
-- Assistant text from `assistant.message_delta` / `assistant.message`
-- `usage.outputTokens` from assistant messages
-- `premiumRequests` from `result.usage.premiumRequests`
-- Effective model hints from `session.tools_updated` or tool completion events
+`buildCopilotArgs` maps prompt/session options, model and reasoning flags, permissions, attachments, MCP settings, GitHub Enterprise hostnames, and BYOK provider environment variables. `runCopilotLocal` retries stale resumed sessions once and reports `clearSession: true` when callers should discard the old session id.
