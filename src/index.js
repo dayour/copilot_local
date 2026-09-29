@@ -262,6 +262,12 @@ export {
   listFallbackModels
 } from "./models.js";
 export {
+  buildCopilotSdkClientOptions,
+  createCopilotSdkAdapter,
+  listCopilotSdkModels,
+  runCopilotSdk
+} from "./sdkProvider.js";
+export {
   buildCopilotHeaders,
   discoverCopilotApiUrl,
   isCopilotAuthError,
